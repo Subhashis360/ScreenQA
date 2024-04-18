@@ -1,4 +1,5 @@
 import sys
+from threading import Thread
 from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QVBoxLayout,QFrame,QPushButton,QFileDialog
 from PyQt5.QtCore import Qt
 import json
@@ -10,12 +11,12 @@ import requests
 import openai
 
 def ask_chatgpt(question):
-    openai.api_key = 'Enter Your own chatgpt api key bro...'
+    openai.api_key = 'Enter Your own openai api key bro'
     question += "Give me the accurate ans of this question"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are jarvis, a large language model trained by subhashis. Your task to help him what he ask you need to answers all requests and follows all instructions And Give 100% Accurate answer"},
+            {"role": "system", "content": "You are jarvis, a large language model trained by subhashis. Your task to help him what he ask you need to answers all requests and follows all instructions And Give 1005 Accurate answer"},
             {"role": "user", "content": question},
             {"role": "assistant", "content": "Continue"}
         ],
@@ -36,6 +37,15 @@ def extract_text():
         resp = response.text
         mainresp = resp.split('"en",[[["')[1].split('"]],')[0]
         return mainresp
+
+def showans():
+        extracted_text = extract_text()
+        print("====================QUESTION==========================")
+        print(extracted_text)
+        print("=====================ANSWER===========================")
+        print(ask_chatgpt(extracted_text))
+        print("======================================================")
+
 
 class Capture(QWidget):
     def __init__(self, main_window):
@@ -86,12 +96,9 @@ class Capture(QWidget):
             self.main.label.setPixmap(self.imgmap)
             self.main.show()
             self.close()
-            extracted_text = extract_text()
-            print("====================QUESTION==========================")
-            print(extracted_text)
-            print("=====================ANSWER===========================")
-            print(ask_chatgpt(extracted_text))
-            print("======================================================")
+            print("Extracting Answer Please Wait...")
+            Thread(target=showans).start()
+
 
 class ScreenRegionSelector(QMainWindow):
     def __init__(self,):
