@@ -17,5 +17,8 @@ ScreenQA is a Python tool designed to streamline the process of extracting text/
    ```bash
    python main.py
    ```
+## Example 
+
+https://github.com/Subhashis360/ScreenQA/assets/113136062/45f1df60-ae7f-4969-a525-f47f7f5e5a46
 
 
