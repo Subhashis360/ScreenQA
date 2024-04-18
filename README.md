@@ -12,6 +12,6 @@ Answer Retrieval: Uses ChatGPT for answering generated questions.
 Easy-to-Use Interface: Provides a user-friendly command-line interface for seamless interaction.
 
 #usages video
-![Video]()
+![Video](example.mp4)
 
 
